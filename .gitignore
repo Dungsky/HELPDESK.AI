@@ -5,12 +5,18 @@ __pycache__/
 venv/
 env/
 .env
+backend/.env
+Frontend/.env
+.vscode/
 
 # Models (Keep them if they are small, but here they are large. 
 # We should probably only keep the ones we actually use if possible, 
 # but for now we'll just ignore the venv)
 # Models
 backend/venv/
+backend/.venv/
+.venv/
+backend/data/case_history_cache.json
 
 # Logs and Data
 data/low_confidence_log.json

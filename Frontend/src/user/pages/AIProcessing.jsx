@@ -44,15 +44,11 @@ const AIProcessing = () => {
 
         const analyzeTicket = async () => {
             console.log("[AIProcessing] Starting analysis for:", text);
+            let uploadedImageUrl = null;
 
             try {
-
                 // === Single call to backend — handles ML classification + Gemini summary ===
                 // Classification, NER, priority, team assignment, duplicate detection → local ML model
-
-
-                // ── Upload Image if present ──
-                let uploadedImageUrl = null;
 
                 if (image_base64) {
 
@@ -257,22 +253,14 @@ const AIProcessing = () => {
                     throw new Error("BACKEND_STARTUP");
                 }
 
-                // Override the backend summary using the robust frontend multi-provider failover
+                // Generate high-fidelity summary from AI model if available
                 try {
                     const aiResult = await analyzeTicketWithAI(text, image_text, image_base64);
-                    finalTicket.summary = aiResult.summary || finalTicket.summary;
-                    if (aiResult.image_description) {
-                        finalTicket.image_description = aiResult.image_description;
+                    if (aiResult?.summary) {
+                        finalTicket.summary = aiResult.summary;
                     }
-                    
-                    // The local ML model is weak with regional languages (e.g., Telugu).
-                    // If the LLM returned classification fields, we trust it more than a low-confidence ML prediction.
-                    if (aiResult.category && (finalTicket.confidence < 0.6 || finalTicket.category === 'Unknown' || finalTicket.category === 'Access')) {
-                        finalTicket.category = aiResult.category;
-                        finalTicket.subcategory = aiResult.subcategory || finalTicket.subcategory;
-                        finalTicket.priority = aiResult.priority || finalTicket.priority;
-                        finalTicket.assigned_team = aiResult.assigned_team || finalTicket.assigned_team;
-                        finalTicket.confidence = aiResult.confidence || 0.95;
+                    if (aiResult?.image_description) {
+                        finalTicket.image_description = aiResult.image_description;
                     }
                 } catch (aiErr) {
                     console.warn("[AIProcessing] Frontend summary generation failed:", aiErr);

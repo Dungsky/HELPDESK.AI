@@ -8,7 +8,8 @@
     "build": "vite build",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
-    "prepare": "husky install",
+    "deploy:cf": "npm run build && wrangler pages deploy dist --project-name=ai-helpdesk-frontend",
+    "prepare": "husky || exit 0",
     "format": "prettier --write ."
   },
   "dependencies": {
@@ -58,7 +59,8 @@
     "postcss": "^8.5.6",
     "prettier": "^3.8.1",
     "tailwindcss": "^3.4.19",
-    "vite": "^7.3.1"
+    "vite": "^7.3.1",
+    "vitest": "^3.2.7"
   },
   "lint-staged": "{'*.{js,jsx}': ['eslint --fix', 'prettier --write']}"
 }

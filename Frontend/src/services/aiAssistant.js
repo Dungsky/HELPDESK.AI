@@ -170,12 +170,19 @@ const runWithFailover = async (promptText, history, image) => {
 };
 
 // ─── Smart offline fallback (used when ALL providers fail) ───────────────────
-// Generates a reasonable ticket summary locally so the flow never fully breaks.
 const localFallbackSummary = (issueText) => {
-    const text = issueText.trim();
-    // Capitalise first letter, truncate at 100 chars
-    const summary = (text.charAt(0).toUpperCase() + text.slice(1)).substring(0, 100) + (text.length > 100 ? '…' : '');
-    return { summary, image_description: '' };
+    const text = (issueText || '').trim();
+    const summary = text ? (text.charAt(0).toUpperCase() + text.slice(1)).substring(0, 100) + (text.length > 100 ? '…' : '') : 'User reported issue';
+
+    return {
+        summary,
+        image_description: '',
+        category: "General",
+        subcategory: "General Inquiry",
+        priority: "Medium",
+        assigned_team: "General Support",
+        confidence: 0.5
+    };
 };
 
 
