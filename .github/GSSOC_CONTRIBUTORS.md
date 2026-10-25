@@ -37,7 +37,7 @@ Point values are assigned by the GSSoC program. When in doubt, check the issue's
 
 1. Find an issue labeled `gssoc:approved` and `status:open` (not already assigned)
 2. Read the issue fully — including all comments
-3. Post a comment tagging the maintainer: `@ritesh-1918 please assign this to me under GSSoC 2026`
+3. Post a comment tagging the maintainer: `@riteshbonthalakoti please assign this to me under GSSoC 2026`
 4. Wait for the maintainer to add you as the assignee
 5. Only after assignment: fork the repo and create your branch
 
@@ -71,7 +71,8 @@ Every PR must meet ALL of the following before it will be reviewed:
 | Requirement                               | Detail                                              |
 |-------------------------------------------|-----------------------------------------------------|
 | Fixes a single assigned issue             | One PR per issue — do not bundle unrelated changes  |
-| Branch based on latest `main`             | Sync with upstream before coding                    |
+| Branch based on latest `gssoc`            | Sync with upstream `gssoc` branch before coding     |
+| Target branch is `gssoc`                  | Never target `main`. `main` PRs cannot be merged   |
 | `Fixes #<issue_number>` in PR description | Required for auto-close on merge                    |
 | 200+ meaningful lines changed             | Tests, error handling, edge cases count toward this |
 | No `console.log` or debug code            | Clean up before opening the PR                      |
@@ -83,8 +84,8 @@ Every PR must meet ALL of the following before it will be reviewed:
 
 ## The Review Process
 
-1. Open your PR against `main` in the upstream repo (`ritesh-1918/HELPDESK.AI`)
-2. A maintainer will review within 5–7 business days
+1. Open your PR strictly against **`gssoc`** in the upstream repo (`riteshbonthalakoti/HELPDESK.AI`)
+2. A maintainer will review within 24–48 hours
 3. Address all review comments within **72 hours** or the PR may be closed
 4. Once approved, a maintainer will merge — do not merge your own PR
 5. After merge, GSSoC points are credited by the maintainer
@@ -95,7 +96,8 @@ Every PR must meet ALL of the following before it will be reviewed:
 
 | Mistake                                             | Fix                                                          |
 |-----------------------------------------------------|--------------------------------------------------------------|
-| PR based on a stale fork (missing upstream commits) | `git fetch upstream && git rebase upstream/main`             |
+| PR targeting `main` instead of `gssoc`              | Change PR base branch to `gssoc`                             |
+| PR based on a stale fork (missing upstream commits) | `git fetch upstream && git rebase upstream/gssoc`            |
 | Only the happy path is implemented                  | Add error handling, null checks, and edge case tests         |
 | PR description is vague ("Fixed the bug")           | Use the template in `CONTRIBUTING.md` — explain root cause   |
 | Unrelated files changed                             | Revert unrelated changes before opening the PR               |
@@ -109,7 +111,7 @@ Every PR must meet ALL of the following before it will be reviewed:
 * **Stuck on setup?** Open a Discussion (not an Issue) and describe your problem
 * **Unclear on requirements?** Comment on the issue — tag the maintainer
 * **Found a bug unrelated to your issue?** Open a new issue before fixing it
-* **Merge conflict?** Rebase onto latest `upstream/main` — don't merge main into your branch
+* **Merge conflict?** Rebase onto latest `upstream/gssoc` — don't merge gssoc into your branch
 
 ---
 

@@ -77,10 +77,10 @@ Every comment posted by a Mentor on an issue or PR **MUST** append this markdown
 
 ### 🌟 Project Support & Developer Network (Show Some Love!)
 If you want to support this project and stay connected with me for future opportunities, please take 30 seconds to:
-1. ⭐ **Star this repository**: Helps our AI helpdesk get noticed! [Star here](https://github.com/ritesh-1918/HELPDESK.AI)
-2. 🍴 **Fork this repository**: Keep a copy to build your own cool tools! [Fork here](https://github.com/ritesh-1918/HELPDESK.AI/fork)
-3. 👤 **Follow @ritesh-1918 on GitHub**: Stay updated on real-time open-source projects! [Follow here](https://github.com/ritesh-1918)
-4. 💼 **Connect on LinkedIn**: Let's build a strong engineering network! [Connect on LinkedIn](https://www.linkedin.com/in/ritesh1908/)
+1. ⭐ **Star this repository**: Helps our AI helpdesk get noticed! [Star here](https://github.com/riteshbonthalakoti/HELPDESK.AI)
+2. 🍴 **Fork this repository**: Keep a copy to build your own cool tools! [Fork here](https://github.com/riteshbonthalakoti/HELPDESK.AI/fork)
+3. 👤 **Follow @riteshbonthalakoti on GitHub**: Stay updated on real-time open-source projects! [Follow here](https://github.com/riteshbonthalakoti)
+4. 💼 **Connect on LinkedIn**: Let's build a strong engineering network! [Connect on LinkedIn](https://www.linkedin.com/in/riteshbonthalakoti/)
 ```
 
 Thank you for your incredible work in leading the **HELPDESK.AI** community! Let's continue building premium, state-of-the-art tech and dominate the GSSoC 2026 Leaderboard! 🚀🔥

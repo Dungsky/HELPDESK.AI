@@ -1,1 +1,57 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+.venv/
+ENV/
+*.egg-info/
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Environment Variables
+.env
+.env.*
+!.env.example
 backend/.env
+Frontend/.env
+
+# Node / Frontend
+node_modules/
+**/node_modules/
+dist/
+dist-ssr/
+build/
+.vercel
+*.local
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# MobileApp
+MobileApp/node_modules/
+MobileApp/.expo/
+MobileApp/dist/
+*.apk
+*.aab
+
+# IDE & OS
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+
+# Logs & Temporary Files
+*.log
+logs/
+scratch/
+main_clean/
+issue_tracker_state.json
+.temp/
+supabase/.temp/

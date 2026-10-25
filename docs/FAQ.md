@@ -22,7 +22,7 @@ This FAQ addresses common questions about setting up, developing with, and contr
 **A:** Follow these steps to set up the project:
 
 ```bash
-git clone https://github.com/ritesh-1918/HELPDESK.AI.git
+git clone https://github.com/riteshbonthalakoti/HELPDESK.AI.git
 cd HELPDESK.AI
 ```
 
@@ -411,14 +411,14 @@ Types: `feat`, `fix`, `docs`, `style`, `refactor`, `test`, `chore`
 - [Backend README](../backend/README.md)
 - [Testing Guide](./TESTING.md)
 - [Architecture Documentation](./architecture.md)
-- [GitHub Issues](https://github.com/ritesh-1918/HELPDESK.AI/issues)
+- [GitHub Issues](https://github.com/riteshbonthalakoti/HELPDESK.AI/issues)
 
 ---
 
 ## Still Need Help?
 
 If you can't find an answer to your question:
-1. Check existing [GitHub Issues](https://github.com/ritesh-1918/HELPDESK.AI/issues)
+1. Check existing [GitHub Issues](https://github.com/riteshbonthalakoti/HELPDESK.AI/issues)
 2. Search the codebase for similar implementations
 3. Create a new issue with detailed information about your problem
 4. Join the project's communication channels (if available)

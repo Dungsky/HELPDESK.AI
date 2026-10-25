@@ -10,7 +10,7 @@ Helpdesk.ai is built on a highly-decoupled, modern SaaS architecture consisting 
 
 | Platform Component | Technical Stack | Deployment URL / URI | Details & Purpose |
 | :--- | :--- | :--- | :--- |
-| **GitHub Repository** | Git Version Control | `github.com/ritesh-1918/HELPDESK.AI` | Source of truth. Main branch is `main`. |
+| **GitHub Repository** | Git Version Control | `github.com/riteshbonthalakoti/HELPDESK.AI` | Source of truth. Main branch is `main`. |
 | **Frontend (Web)** | React 19 + Vite + TailwindCSS | [helpdeskaiv1.vercel.app](https://helpdeskaiv1.vercel.app) | Enterprise B2B SaaS web portal (Vercel deployment) |
 | **Mobile App** | React Native (Expo SDK 54) | [EAS App Dashboard](https://expo.dev/accounts/ritesh1918/projects/helpdesk-ai) | Android and iOS applications managed via EAS |
 | **Backend (AI API)** | Python FastAPI | [ritesh19180-ai-helpdesk-api.hf.space](https://ritesh19180-ai-helpdesk-api.hf.space) | Machine learning pipeline deployed on Hugging Face Spaces |

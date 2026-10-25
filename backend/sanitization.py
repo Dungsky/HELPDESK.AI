@@ -6,7 +6,7 @@ user-generated content before storage. React's JSX auto-escaping provides
 client-side protection, but server-side sanitization ensures safety even if
 content is consumed by non-React clients (API consumers, mobile apps, etc.).
 
-Addresses: https://github.com/ritesh-1918/HELPDESK.AI/issues/739
+Addresses: https://github.com/riteshbonthalakoti/HELPDESK.AI/issues/739
 """
 
 import html

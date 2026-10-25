@@ -1,8 +1,14 @@
 from __future__ import annotations
 
+import asyncio
+from datetime import datetime, timezone
+import json
 import logging
 import os
-from datetime import datetime, timezone
+from pathlib import Path
+import sys
+import time
+from dotenv import load_dotenv
 
 logger = logging.getLogger(__name__)
 
@@ -159,15 +165,6 @@ Run as a standalone process:
 
 Or import and use the start_background_checker() function.
 """
-
-import os
-import sys
-import time
-import json
-import asyncio
-import logging
-import datetime
-from pathlib import Path
 
 # ── Project Path ──────────────────────────────────────────────────────────
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))

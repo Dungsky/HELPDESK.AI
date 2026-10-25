@@ -18,7 +18,7 @@ Ensure you have the following installed on your system:
 ## 🛠️ Initial Setup
 
 1. **Fork the Repository**:
-   Click the "Fork" button on the top right of the [HELPDESK.AI repository](https://github.com/ritesh-1918/HELPDESK.AI).
+   Click the "Fork" button on the top right of the [HELPDESK.AI repository](https://github.com/riteshbonthalakoti/HELPDESK.AI).
 
 2. **Clone your Fork**:
    ```bash
@@ -28,7 +28,7 @@ Ensure you have the following installed on your system:
 
 3. **Set Up Remote**:
    ```bash
-   git remote add upstream https://github.com/ritesh-1918/HELPDESK.AI.git
+   git remote add upstream https://github.com/riteshbonthalakoti/HELPDESK.AI.git
    ```
 
 ---
@@ -116,13 +116,13 @@ To have data to work with, you need to seed your database.
 
 1. **Sync with Upstream**:
    ```bash
-   git checkout main
-   git pull upstream main
+   git checkout gssoc
+   git pull upstream gssoc
    ```
 
 2. **Create a Feature Branch**:
    ```bash
-   git checkout -b feature/your-feature-name
+   git checkout -b feature/issue-123-your-feature-name
    ```
 
 3. **Commit Changes**:
@@ -130,18 +130,21 @@ To have data to work with, you need to seed your database.
 
 4. **Push and Open PR**:
    ```bash
-   git push origin feature/your-feature-name
+   git push origin feature/issue-123-your-feature-name
    ```
-   Open a PR against the `gssoc` branch (Note: GSSoC PRs target `gssoc`, not `main`).
+   Open a PR against the `gssoc` branch (Note: GSSoC PRs strictly target `gssoc`, not `main`).
 
 ---
 
 ## ✅ Onboarding Checklist
-- [ ] Forked and Cloned.
+- [ ] Starred repository: https://github.com/riteshbonthalakoti/HELPDESK.AI
+- [ ] Followed project admin: https://github.com/riteshbonthalakoti
+- [ ] Forked and Cloned on the `gssoc` branch.
+- [ ] Registered for test account at https://helpdeskaiv1.vercel.app/signup (Employee Signup under company **RITESH PVT LTD**).
+- [ ] Assigned to issue prior to opening PR.
 - [ ] Backend dependencies installed and running.
 - [ ] Frontend dependencies installed and running.
-- [ ] Supabase project configured.
-- [ ] Database seeded successfully.
+- [ ] Supabase project configured and seeded.
 - [ ] PR targets the `gssoc` branch.
 
 Happy coding! If you run into issues, please reach out in the Discord community.

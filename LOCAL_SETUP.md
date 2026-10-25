@@ -27,7 +27,7 @@ HELPDESK.AI uses a dedicated `gssoc` tracking branch for all contributor PRs. **
 
 ```bash
 # Clone directly onto the gssoc branch, no manual switching needed
-git clone --branch gssoc --single-branch https://github.com/ritesh-1918/HELPDESK.AI.git
+git clone --branch gssoc --single-branch https://github.com/riteshbonthalakoti/HELPDESK.AI.git
 
 cd HELPDESK.AI
 ```

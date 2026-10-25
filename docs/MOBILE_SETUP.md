@@ -13,7 +13,7 @@ HELPDESK.AI mobile is an **Expo SDK 54** React Native app under `MobileApp/`. Th
 ## 1. Local setup
 
 ```bash
-git clone https://github.com/ritesh-1918/HELPDESK.AI.git
+git clone https://github.com/riteshbonthalakoti/HELPDESK.AI.git
 cd HELPDESK.AI/MobileApp
 npm install
 ```
@@ -134,5 +134,5 @@ npx eas build --platform ios
 
 ## Support
 
-- [GitHub Issues](https://github.com/ritesh-1918/HELPDESK.AI/issues)
+- [GitHub Issues](https://github.com/riteshbonthalakoti/HELPDESK.AI/issues)
 - [CONTRIBUTING.md](../CONTRIBUTING.md)

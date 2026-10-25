@@ -448,4 +448,4 @@ EXPLAIN ANALYZE SELECT * FROM tickets;
 - PostgreSQL RLS Documentation: https://www.postgresql.org/docs/current/ddl-rowsecurity.html
 - Supabase RLS Guide: https://supabase.com/docs/guides/auth/row-level-security
 - Migration: `supabase/migrations/20260712000000_add_comprehensive_rls_policies.sql`
-- Issue: https://github.com/ritesh-1918/HELPDESK.AI/issues/3204
+- Issue: https://github.com/riteshbonthalakoti/HELPDESK.AI/issues/3204

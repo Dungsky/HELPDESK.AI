@@ -61,7 +61,7 @@ jobs:
         run: |
           pip install --upgrade pip
           # Install a lighter subset that still covers service imports
-          pip install fastapi uvicorn pydantic python-dotenv slowapi \
+          pip install fastapi uvicorn pydantic pydantic-settings python-dotenv slowapi structlog \
                       supabase==2.22.4 storage3==2.22.4 \
                       requests httpx apscheduler \
                       pytest pytest-cov

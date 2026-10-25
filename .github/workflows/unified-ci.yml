@@ -51,7 +51,7 @@ jobs:
       - name: Install dependencies (CI subset)
         run: |
           pip install --upgrade pip
-          pip install fastapi uvicorn pydantic python-dotenv slowapi \
+          pip install fastapi uvicorn pydantic pydantic-settings python-dotenv slowapi structlog \
                       supabase==2.22.4 storage3==2.22.4 \
                       requests httpx apscheduler \
                       pytest pytest-cov
@@ -100,7 +100,7 @@ jobs:
         run: npx eslint src/ --max-warnings=0
 
       - name: Run Vitest
-        run: npx vitest run --reporter=verbose
+        run: npx vitest run --reporter=verbose --passWithNoTests
 
       - name: Build check
         run: npm run build

@@ -17,7 +17,7 @@ We take the security of HELPDESK.AI seriously. If you believe you have found a s
 
 Instead, please report them via email to the project maintainer at:
 - **LinkedIn**: [Ritesh](https://www.linkedin.com/in/ritesh1908/)
-- **GitHub**: [@ritesh-1918](https://github.com/ritesh-1918)
+- **GitHub**: [@riteshbonthalakoti](https://github.com/riteshbonthalakoti)
 
 ### What to Include
 

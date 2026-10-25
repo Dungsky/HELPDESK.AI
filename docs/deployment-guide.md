@@ -63,7 +63,7 @@ LABEL maintainer="HELPDESK.AI Team" \
       org.opencontainers.image.title="HELPDESK.AI Backend" \
       org.opencontainers.image.description="Production backend service for HELPDESK.AI" \
       org.opencontainers.image.version="1.0.0" \
-      org.opencontainers.image.source="https://github.com/ritesh-1918/HELPDESK.AI" \
+      org.opencontainers.image.source="https://github.com/riteshbonthalakoti/HELPDESK.AI" \
       org.opencontainers.image.licenses="MIT"
 
 # ---------------------------------------------------------------------------

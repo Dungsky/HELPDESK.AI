@@ -2,14 +2,12 @@
 tag_router.py — REST endpoints for ticket tagging
 Issue #404 — Smart Ticket Tagging System
 """
+import os
+from typing import Optional
 from fastapi import APIRouter, HTTPException, Header, Query, Request
 from pydantic import BaseModel, field_validator
-from typing import Optional
 from supabase import create_client
 from tag_service import suggest_tags, save_tags, get_tags, get_popular_tags
-from backend.services.rate_limit_config import limiter
-
-
 from backend.limiter import limiter
 
 router = APIRouter(prefix="/api/tags", tags=["tags"])

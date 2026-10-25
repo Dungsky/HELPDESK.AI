@@ -37,7 +37,7 @@ Best,
 
 ## Tier 2: Moderation Report Template (Maintainers)
 
-Use this to report a violation to the HELPDESK.AI maintainers. Open a new issue at https://github.com/ritesh-1918/HELPDESK.AI/issues with the label `coc-violation`.
+Use this to report a violation to the HELPDESK.AI maintainers. Open a new issue at https://github.com/riteshbonthalakoti/HELPDESK.AI/issues with the label `coc-violation`.
 
 ```markdown
 ### CoC Violation Report
@@ -90,7 +90,7 @@ Use this for severe violations (harassment, doxxing, threats, illegal content) t
 **Reporting user:** @[your username]
 **Reported user:** @[username]
 
-**Repository:** ritesh-1918/HELPDESK.AI
+**Repository:** riteshbonthalakoti/HELPDESK.AI
 
 **Nature of violation:**
 - [ ] Harassment or bullying

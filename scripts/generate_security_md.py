@@ -194,7 +194,7 @@ The HELPDESK.AI team takes security bugs seriously. We appreciate your efforts t
 
 To report a security issue, please use the GitHub Security Advisory **"Report a Vulnerability"** tab.
 
-Alternatively, you can email the project maintainer directly at **ritesh-1918@example.com** (replace with actual email).
+Alternatively, you can email the project maintainer directly at **riteshbonthalakoti@example.com** (replace with actual email).
 
 The maintainer will send a response indicating the next steps in handling your report. After the initial reply to your report, the security team will keep you informed of the progress towards a fix and full announcement, and may ask for additional information or guidance.
 

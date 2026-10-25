@@ -29,7 +29,7 @@ export default function Footer({ setShowDemo = () => {} }) {
                             <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="w-8 h-8 bg-white/10 dark:bg-slate-800 hover:bg-white/20 dark:hover:bg-slate-700 rounded-lg flex items-center justify-center transition-all duration-300 hover:-translate-y-0.5 hover:scale-110">
                                 <Linkedin className="w-3.5 h-3.5" />
                             </a>
-                            <a href="https://github.com/ritesh-1918/HELPDESK.AI" target="_blank" rel="noopener noreferrer" className="w-8 h-8 bg-white/10 dark:bg-slate-800 hover:bg-white/20 dark:hover:bg-slate-700 rounded-lg flex items-center justify-center transition-all duration-300 hover:-translate-y-0.5 hover:scale-110">
+                            <a href="https://github.com/riteshbonthalakoti/HELPDESK.AI" target="_blank" rel="noopener noreferrer" className="w-8 h-8 bg-white/10 dark:bg-slate-800 hover:bg-white/20 dark:hover:bg-slate-700 rounded-lg flex items-center justify-center transition-all duration-300 hover:-translate-y-0.5 hover:scale-110">
                                 <Github className="w-3.5 h-3.5" />
                             </a>
                         </div>

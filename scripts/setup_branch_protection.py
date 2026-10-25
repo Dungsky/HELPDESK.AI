@@ -1,7 +1,7 @@
 import json
 import subprocess
 
-REPO = "ritesh-1918/HELPDESK.AI"
+REPO = "riteshbonthalakoti/HELPDESK.AI"
 BRANCH = "main"
 
 def setup_branch_protection():

@@ -1,53 +1,47 @@
+> [!IMPORTANT]
+> **GSSoC 2026 Target Branch Requirement**: All Pull Requests **MUST target the `gssoc` branch**, NOT `main`. PRs opened against `main` cannot be merged and will be requested to be re-targeted.
+
 ## Description
 
-<!-- Provide a brief description of the changes in this PR -->
+<!-- Briefly describe what this PR does and the problem it solves -->
+
+## Related Issue
+
+<!-- Link to the assigned issue. Format: Fixes #<issue_number> -->
+Fixes #
 
 ## Type of Change
 
-- [ ] Bug fix (non-breaking change which fixes an issue)
-- [ ] New feature (non-breaking change which adds functionality)
-- [ ] Breaking change (fix or feature that would cause existing functionality to not work as expected)
-- [ ] Documentation update
-- [ ] Test addition/update
-- [ ] Refactoring (no functional changes)
+- [ ] 🐛 Bug fix (non-breaking change which fixes an issue)
+- [ ] ✨ New feature (non-breaking change which adds functionality)
+- [ ] 🔒 Security hardening / Vulnerability patch
+- [ ] ⚡ Performance optimization
+- [ ] 🧪 Test suite addition / update
+- [ ] 📝 Documentation update
+- [ ] 🎨 UI / UX refinement
 
-## Related Issues
+## GSSoC 2026 Contributor Checklist
 
-<!-- Link to related issues using #issue_number -->
+Please verify before requesting maintainer review:
 
-Closes #
+- [ ] ⭐ I have starred the repository: [riteshbonthalakoti/HELPDESK.AI](https://github.com/riteshbonthalakoti/HELPDESK.AI)
+- [ ] 👤 I have followed the project maintainer: [@riteshbonthalakoti](https://github.com/riteshbonthalakoti)
+- [ ] 🍴 I have forked the repository
+- [ ] 🖥️ I have registered on the test app ([https://helpdeskaiv1.vercel.app/signup](https://helpdeskaiv1.vercel.app/signup)) under **Employee Signup** with company **RITESH PVT LTD**
+- [ ] 🎯 I was assigned to this issue prior to opening this PR
+- [ ] 🌿 My PR targets the `gssoc` branch
+- [ ] 🚫 My code contains no `console.log`, temporary debug `print()`, or leftover commented blocks
+- [ ] 👤 No AI attribution or co-authorship tags included
+- [ ] 🧪 New and existing unit tests pass locally
 
-## Changes Made
+## Testing Performed
 
-<!-- List the specific changes made in this PR -->
+<!-- Describe the automated tests or manual test flows you ran to verify this change -->
 
-- 
-- 
-- 
+## Screenshots or Recordings (if applicable)
 
-## Testing
-
-<!-- Describe the tests you ran to verify your changes -->
-
-- [ ] Unit tests pass
-- [ ] Integration tests pass
-- [ ] Manual testing performed
-
-## Checklist
-
-- [ ] My code follows the project's coding style
-- [ ] I have performed a self-review of my code
-- [ ] I have commented my code, particularly in hard-to-understand areas
-- [ ] I have made corresponding changes to the documentation
-- [ ] My changes generate no new warnings
-- [ ] I have added tests that prove my fix is effective or my feature works
-- [ ] New and existing unit tests pass locally with my changes
-- [ ] Any dependent changes have been merged and published
-
-## Screenshots (if applicable)
-
-<!-- Add screenshots to help explain your changes -->
+<!-- Add before/after screenshots or screen recordings for UI/UX modifications -->
 
 ## Additional Notes
 
-<!-- Add any additional notes or context about the PR -->
+<!-- Any additional context or considerations for the reviewing mentor -->

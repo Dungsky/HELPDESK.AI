@@ -51,7 +51,7 @@ VITE_BACKEND_URL=http://localhost:8000
 
 ```bash
 # Clone the repository
-git clone https://github.com/ritesh-1918/HELPDESK.AI.git
+git clone https://github.com/riteshbonthalakoti/HELPDESK.AI.git
 cd HELPDESK.AI
 
 # Install Frontend dependencies

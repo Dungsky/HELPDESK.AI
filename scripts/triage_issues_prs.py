@@ -7,7 +7,7 @@ from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parents[1]
 STATE_FILE = BASE_DIR / "issue_tracker_state.json"
 TEMPLATE_FILE = BASE_DIR / "templates" / "owner_reply.txt"
-REPO = "ritesh-1918/HELPDESK.AI"
+REPO = "riteshbonthalakoti/HELPDESK.AI"
 
 # Load or initialize state
 if STATE_FILE.exists():
