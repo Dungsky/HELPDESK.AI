@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { 
   StyleSheet, 
   View, 
@@ -10,8 +10,10 @@ import {
   Platform, 
   ActivityIndicator,
   Image,
+  Alert,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { supabase } from '../../lib/supabase';
 import { COLORS, SPACING, SHADOWS } from '../../styles/theme';
 import { ArrowLeft, Sparkles, Send, Image as ImageIcon, X } from 'lucide-react-native';
@@ -20,12 +22,75 @@ import { useNotification } from '../../components/NotificationProvider';
 import * as ImagePicker from 'expo-image-picker';
 import * as Haptics from 'expo-haptics';
 
+const DRAFT_STORAGE_KEY = '@support_ticket_draft';
+
 const CreateTicketScreen = () => {
   const [description, setDescription] = useState('');
   const [loading, setLoading] = useState(false);
   const [image, setImage] = useState(null);
   const navigation = useNavigation();
   const { success, error: notifyError } = useNotification();
+
+  useEffect(() => {
+    checkForSavedDraft();
+  }, []);
+
+  useEffect(() => {
+    if (description || image) {
+      saveDraft(description, image);
+    }
+  }, [description, image]);
+
+  const saveDraft = async (desc, imgUri) => {
+    try {
+      const draftData = JSON.stringify({ description: desc, image: imgUri, updatedAt: new Date().toISOString() });
+      await AsyncStorage.setItem(DRAFT_STORAGE_KEY, draftData);
+    } catch (e) {
+      console.error('Failed to save draft to storage', e);
+    }
+  };
+
+  const checkForSavedDraft = async () => {
+    try {
+      const savedDraft = await AsyncStorage.getItem(DRAFT_STORAGE_KEY);
+      if (savedDraft) {
+        const parsed = JSON.parse(savedDraft);
+        if (parsed.description || parsed.image) {
+          Alert.alert(
+            'Restore Draft?',
+            'We found an unsaved ticket draft from your previous session. Would you like to restore it?',
+            [
+              {
+                text: 'Discard',
+                style: 'cancel',
+                onPress: async () => {
+                  await AsyncStorage.removeItem(DRAFT_STORAGE_KEY);
+                },
+              },
+              {
+                text: 'Restore',
+                onPress: () => {
+                  if (parsed.description) setDescription(parsed.description);
+                  if (parsed.image) setImage(parsed.image);
+                },
+              },
+            ],
+            { cancelable: true }
+          );
+        }
+      }
+    } catch (e) {
+      console.error('Failed to load draft from storage', e);
+    }
+  };
+
+  const clearDraft = async () => {
+    try {
+      await AsyncStorage.removeItem(DRAFT_STORAGE_KEY);
+    } catch (e) {
+      console.error('Failed to clear draft storage', e);
+    }
+  };
 
   const pickImage = async () => {
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
@@ -59,6 +124,12 @@ const CreateTicketScreen = () => {
         });
       }
 
+      // Clear draft upon successful submission trigger
+      await clearDraft();
+
+      // Trigger success haptic feedback
+      Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
+      
       navigation.navigate('AIProcessing', {
         text: description,
         image_base64: base64,
@@ -160,15 +231,16 @@ const styles = StyleSheet.create({
   backBtn: { width: 40, height: 40, alignItems: 'center', justifyContent: 'center', borderRadius: 20, backgroundColor: COLORS.surfaceDark },
   title: { fontSize: 18, fontWeight: '800', color: COLORS.text },
   scrollContent: { padding: 24 },
-  aiBanner: {
-    flexDirection: 'row',
-    backgroundColor: COLORS.primaryLight,
-    padding: 16,
-    borderRadius: 16,
-    marginBottom: 24,
-    alignItems: 'center',
-    gap: 12
-  },
+  aiBanner:
+    {
+      flexDirection: 'row',
+      backgroundColor: COLORS.primaryLight,
+      padding: 16,
+      borderRadius: 16,
+      marginBottom: 24,
+      alignItems: 'center',
+      gap: 12
+    },
   aiBannerText: { flex: 1, color: COLORS.primaryDark, fontSize: 13, fontWeight: '600', lineHeight: 18 },
   inputCard: {
     backgroundColor: COLORS.white,
@@ -193,7 +265,7 @@ const styles = StyleSheet.create({
   },
   imagePreviewContainer: { marginTop: 16, position: 'relative', borderRadius: 16, overflow: 'hidden', height: 180, borderWidth: 1, borderColor: COLORS.border },
   imagePreview: { width: '100%', height: '100%' },
-  removeImageBtn: { position: 'absolute', top: 8, right: 8, backgroundColor: 'rgba(0,0,0,0.5)', width: 28, height: 28, borderRadius: 14, justifyContent: 'center', alignItems: 'center' },
+  removeImageBtn: { position: 'absolute', top: '8', right: 8, backgroundColor: 'rgba(0,0,0,0.5)', width: 28, height: 28, borderRadius: 14, justifyContent: 'center', alignItems: 'center' },
   actionRow: { flexDirection: 'row', marginTop: 16, paddingTop: 16, borderTopWidth: 1, borderTopColor: COLORS.border },
   attachmentBtn: { flexDirection: 'row', alignItems: 'center', gap: 8 },
   attachmentText: { fontSize: 14, color: COLORS.primary, fontWeight: '600' },
