@@ -22,7 +22,8 @@ import { useNotification } from '../../components/NotificationProvider';
 import * as ImagePicker from 'expo-image-picker';
 import * as Haptics from 'expo-haptics';
 
-const DRAFT_STORAGE_KEY = '@support_ticket_draft';
+const BASE_DRAFT_KEY = '@support_ticket_draft';
+const getDraftKey = (user) => (user?.id ? `${BASE_DRAFT_KEY}_${user.id}` : BASE_DRAFT_KEY);
 
 const CreateTicketScreen = () => {
   const [description, setDescription] = useState('');
@@ -38,13 +39,21 @@ const CreateTicketScreen = () => {
   useEffect(() => {
     if (description || image) {
       saveDraft(description, image);
+    } else {
+      // Clean up storage when form is cleared
+      AsyncStorage.removeItem(getDraftKey(user)).catch(() => {});
     }
-  }, [description, image]);
+  }, [description, image, user]);
 
   const saveDraft = async (desc, imgUri) => {
     try {
+      const key = getDraftKey(user);
+      if (!desc && !imgUri) {
+        await AsyncStorage.removeItem(key);
+        return;
+      }
       const draftData = JSON.stringify({ description: desc, image: imgUri, updatedAt: new Date().toISOString() });
-      await AsyncStorage.setItem(DRAFT_STORAGE_KEY, draftData);
+      await AsyncStorage.setItem(key, draftData);
     } catch (e) {
       console.error('Failed to save draft to storage', e);
     }
@@ -124,8 +133,8 @@ const CreateTicketScreen = () => {
         });
       }
 
-      // Clear draft upon successful submission trigger
-      await clearDraft();
+      // Proceed with navigation first, clear draft upon confirmation
+      if (typeof clearDraft === 'function') await clearDraft();
 
       // Trigger success haptic feedback
       Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
