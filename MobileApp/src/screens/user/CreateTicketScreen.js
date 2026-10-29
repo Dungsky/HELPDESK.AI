@@ -22,8 +22,7 @@ import { useNotification } from '../../components/NotificationProvider';
 import * as ImagePicker from 'expo-image-picker';
 import * as Haptics from 'expo-haptics';
 
-const BASE_DRAFT_KEY = '@support_ticket_draft';
-const getDraftKey = (user) => (user?.id ? `${BASE_DRAFT_KEY}_${user.id}` : BASE_DRAFT_KEY);
+const DRAFT_STORAGE_KEY = '@support_ticket_draft';
 
 const CreateTicketScreen = () => {
   const [description, setDescription] = useState('');
@@ -39,21 +38,13 @@ const CreateTicketScreen = () => {
   useEffect(() => {
     if (description || image) {
       saveDraft(description, image);
-    } else {
-      // Clean up storage when form is cleared
-      AsyncStorage.removeItem(getDraftKey(user)).catch(() => {});
     }
-  }, [description, image, user]);
+  }, [description, image]);
 
   const saveDraft = async (desc, imgUri) => {
     try {
-      const key = getDraftKey(user);
-      if (!desc && !imgUri) {
-        await AsyncStorage.removeItem(key);
-        return;
-      }
       const draftData = JSON.stringify({ description: desc, image: imgUri, updatedAt: new Date().toISOString() });
-      await AsyncStorage.setItem(key, draftData);
+      await AsyncStorage.setItem(DRAFT_STORAGE_KEY, draftData);
     } catch (e) {
       console.error('Failed to save draft to storage', e);
     }
@@ -133,16 +124,14 @@ const CreateTicketScreen = () => {
         });
       }
 
-      // Proceed with navigation first, clear draft upon confirmation
-      if (typeof clearDraft === 'function') await clearDraft();
+      await clearDraft();
 
-      // Trigger success haptic feedback
       Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
       
       navigation.navigate('AIProcessing', {
         text: description,
         image_base64: base64,
-        image_text: "" 
+        image_text: ""
       });
     } catch (e) {
       notifyError('Error', e.message);
@@ -156,7 +145,7 @@ const CreateTicketScreen = () => {
       <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : 'height'} style={{ flex: 1 }}>
         <View style={styles.header}>
           <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backBtn}>
-            <ArrowLeft size={24} color={COLORS.text} />
+            <ArrowLeft size={24} color={COLORS.text || '#0F172A'} />
           </TouchableOpacity>
           <Text style={styles.title}>New Request</Text>
           <View style={{ width: 40 }} />
@@ -164,9 +153,9 @@ const CreateTicketScreen = () => {
 
         <ScrollView contentContainerStyle={styles.scrollContent}>
           <View style={styles.aiBanner}>
-            <Sparkles size={20} color={COLORS.primary} />
+            <Sparkles size={20} color={COLORS.primary || '#2563EB'} />
             <Text style={styles.aiBannerText}>
-              Describe your issue naturally. Our AI will analyze and route it to the right team.
+              Describe your issue naturally. Our service will analyze and route it to the right team.
             </Text>
           </View>
 
@@ -179,7 +168,7 @@ const CreateTicketScreen = () => {
             <TextInput
               style={styles.input}
               placeholder="Describe what's wrong in detail..."
-              placeholderTextColor={COLORS.textMuted}
+              placeholderTextColor={COLORS.textMuted || '#64748B'}
               multiline
               value={description}
               onChangeText={setDescription}
@@ -198,7 +187,7 @@ const CreateTicketScreen = () => {
 
             <View style={styles.actionRow}>
               <TouchableOpacity style={styles.attachmentBtn} onPress={pickImage}>
-                <ImageIcon size={20} color={COLORS.primary} />
+                <ImageIcon size={20} color={COLORS.primary || '#2563EB'} />
                 <Text style={styles.attachmentText}>{image ? 'Change Screenshot' : 'Attach Screenshot'}</Text>
               </TouchableOpacity>
             </View>
@@ -210,11 +199,11 @@ const CreateTicketScreen = () => {
             disabled={loading || !description.trim()}
           >
             {loading ? (
-              <ActivityIndicator color={COLORS.white} />
+              <ActivityIndicator color={COLORS.white || '#FFFFFF'} />
             ) : (
               <>
                 <Text style={styles.btnText}>Analyze & Submit</Text>
-                <Send size={18} color={COLORS.white} />
+                <Send size={18} color={COLORS.white || '#FFFFFF'} />
               </>
             )}
           </TouchableOpacity>
@@ -225,62 +214,121 @@ const CreateTicketScreen = () => {
 };
 
 const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: COLORS.background },
-  header: { 
-    flexDirection: 'row', 
-    alignItems: 'center', 
-    justifyContent: 'space-between', 
-    paddingHorizontal: 20,
-    paddingTop: 10,
-    paddingBottom: 20,
-    backgroundColor: COLORS.white,
-    borderBottomWidth: 1,
-    borderBottomColor: COLORS.border
+  container: {
+    flex: 1,
+    backgroundColor: COLORS.background || '#F8FAFC',
   },
-  backBtn: { width: 40, height: 40, alignItems: 'center', justifyContent: 'center', borderRadius: 20, backgroundColor: COLORS.surfaceDark },
-  title: { fontSize: 18, fontWeight: '800', color: COLORS.text },
-  scrollContent: { padding: 24 },
-  aiBanner:
-    {
-      flexDirection: 'row',
-      backgroundColor: COLORS.primaryLight,
-      padding: 16,
-      borderRadius: 16,
-      marginBottom: 24,
-      alignItems: 'center',
-      gap: 12
-    },
-  aiBannerText: { flex: 1, color: COLORS.primaryDark, fontSize: 13, fontWeight: '600', lineHeight: 18 },
+  header: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    paddingHorizontal: SPACING.md || 16,
+    paddingVertical: SPACING.sm || 12,
+  },
+  backBtn: {
+    padding: SPACING.xs || 4,
+  },
+  title: {
+    fontSize: 18,
+    fontWeight: '600',
+    color: COLORS.text || '#0F172A',
+  },
+  scrollContent: {
+    padding: SPACING.md || 16,
+  },
+  aiBanner: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: COLORS.primaryLight || '#EFF6FF',
+    padding: SPACING.md || 16,
+    borderRadius: 12,
+    marginBottom: SPACING.md || 16,
+    gap: SPACING.sm || 8,
+  },
+  aiBannerText: {
+    flex: 1,
+    fontSize: 14,
+    color: COLORS.primary || '#2563EB',
+    lineHeight: 20,
+  },
   inputCard: {
-    backgroundColor: COLORS.white,
-    borderRadius: 24,
-    padding: 20,
-    marginBottom: 32,
-    ...SHADOWS.soft,
-    borderWidth: 1,
-    borderColor: 'rgba(0,0,0,0.03)'
+    backgroundColor: COLORS.card || '#FFFFFF',
+    borderRadius: 16,
+    padding: SPACING.md || 16,
+    marginBottom: SPACING.md || 16,
+    ...(SHADOWS.small || {}),
   },
-  inputHeader: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 12 },
-  inputLabel: { fontSize: 14, fontWeight: '700', color: COLORS.text },
-  charCount: { fontSize: 12, color: COLORS.textMuted },
-  input: { 
-    backgroundColor: COLORS.background, 
-    borderRadius: 16, 
-    padding: 16, 
-    minHeight: 150, 
-    fontSize: 16, 
-    color: COLORS.text,
-    lineHeight: 24
+  inputHeader: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginBottom: SPACING.xs || 8,
   },
-  imagePreviewContainer: { marginTop: 16, position: 'relative', borderRadius: 16, overflow: 'hidden', height: 180, borderWidth: 1, borderColor: COLORS.border },
-  imagePreview: { width: '100%', height: '100%' },
-  removeImageBtn: { position: 'absolute', top: '8', right: 8, backgroundColor: 'rgba(0,0,0,0.5)', width: 28, height: 28, borderRadius: 14, justifyContent: 'center', alignItems: 'center' },
-  actionRow: { flexDirection: 'row', marginTop: 16, paddingTop: 16, borderTopWidth: 1, borderTopColor: COLORS.border },
-  attachmentBtn: { flexDirection: 'row', alignItems: 'center', gap: 8 },
-  attachmentText: { fontSize: 14, color: COLORS.primary, fontWeight: '600' },
-  btn: { backgroundColor: COLORS.primary, height: 64, borderRadius: 20, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 12, ...SHADOWS.medium },
-  btnDisabled: { backgroundColor: COLORS.textMuted, elevation: 0, shadowOpacity: 0 },
-  btnText: { color: COLORS.white, fontSize: 17, fontWeight: '800' }
+  inputLabel: {
+    fontSize: 14,
+    fontWeight: '600',
+    color: COLORS.text || '#0F172A',
+  },
+  charCount: {
+    fontSize: 12,
+    color: COLORS.textMuted || '#64748B',
+  },
+  input: {
+    fontSize: 15,
+    color: COLORS.text || '#0F172A',
+    minHeight: 120,
+  },
+  imagePreviewContainer: {
+    position: 'relative',
+    marginTop: SPACING.md || 16,
+  },
+  imagePreview: {
+    width: '100%',
+    height: 180,
+    borderRadius: 8,
+  },
+  removeImageBtn: {
+    position: 'absolute',
+    top: 8,
+    right: 8,
+    backgroundColor: 'rgba(0,0,0,0.6)',
+    borderRadius: 12,
+    padding: 4,
+  },
+  actionRow: {
+    marginTop: SPACING.md || 16,
+    borderTopWidth: 1,
+    borderTopColor: COLORS.border || '#E2E8F0',
+    paddingTop: SPACING.sm || 12,
+  },
+  attachmentBtn: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: SPACING.xs || 8,
+  },
+  attachmentText: {
+    fontSize: 14,
+    color: COLORS.primary || '#2563EB',
+    fontWeight: '500',
+  },
+  btn: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: COLORS.primary || '#2563EB',
+    paddingVertical: SPACING.md || 16,
+    borderRadius: 12,
+    gap: SPACING.xs || 8,
+    ...(SHADOWS.medium || {}),
+  },
+  btnDisabled: {
+    opacity: 0.5,
+  },
+  btnText: {
+    color: COLORS.white || '#FFFFFF',
+    fontSize: 16,
+    fontWeight: '600',
+  },
 });
 
 export default CreateTicketScreen;
